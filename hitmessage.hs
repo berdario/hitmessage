@@ -29,10 +29,10 @@ import ClassyPrelude
 
 import qualified Data.Serialize as Cereal
 
-data Message = Message Word32 ByteString Word32 Word32 ByteString
+data Message = Message MagicValue ByteString Word32 Word32 ByteString
 
 parseMessage :: Cereal.Get Message
-parseMessage = fmap Message Cereal.getWord32be <*>
+parseMessage = fmap Message Cereal.get <*>
   Cereal.getByteString 12 <*>
   Cereal.getWord32be <*>
   Cereal.getWord32be <*>
